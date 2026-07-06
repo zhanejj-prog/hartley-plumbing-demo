@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hartley &amp; Sons Plumbing — Hertfordshire</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --navy: #16233A;
+    --navy-light: #223351;
+    --brass: #B8793E;
+    --brass-light: #D9A05F;
+    --paper: #ECEEEB;
+    --paper-dim: #E1E3DD;
+    --ink: #202430;
+    --ink-soft: #4B5163;
+    --green: #4B7A64;
+    --line: #C7CABF;
+    --radius: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family:'IBM Plex Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  :focus-visible{
+    outline: 3px solid var(--brass);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background: var(--navy);
+    color: var(--paper);
+    position: sticky;
+    top:0;
+    z-index: 50;
+    border-bottom: 1px solid var(--navy-light);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 0;
+  }
+  .logo{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+  }
+  .logo .mark{
+    color: var(--brass-light);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight:600;
+    border:1px solid var(--brass-light);
+    padding: 2px 6px;
+    border-radius: var(--radius);
+  }
+  .nav-links{
+    display:flex;
+    gap: 32px;
+    list-style:none;
+    margin:0; padding:0;
+    font-size: 0.92rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color: var(--paper-dim);
+    transition: color .15s ease;
+  }
+  .nav-links a:hover{ color: var(--brass-light); }
+  .call-btn{
+    background: var(--brass);
+    color: var(--navy);
+    font-weight:600;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .call-btn:hover{ background: var(--brass-light); }
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--paper-dim);
+    color: var(--paper);
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 88px 0 96px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 22px; height:1px;
+    background: var(--brass);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .hero h1 span{ color: var(--brass); }
+  .hero p.lead{
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-bottom: 32px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    margin-bottom: 40px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background: var(--navy);
+    color: var(--paper);
+    padding: 14px 26px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    font-weight:600;
+    font-size: 0.95rem;
+  }
+  .btn-primary:hover{ background: var(--navy-light); }
+  .btn-outline{
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    padding: 13px 26px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    font-weight:600;
+    font-size: 0.95rem;
+  }
+  .btn-outline:hover{ background: var(--navy); color: var(--paper); }
+  .trust-row{
+    display:flex;
+    gap: 22px;
+    flex-wrap:wrap;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+  }
+  .trust-row span{
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+  .trust-row span::before{
+    content:"✓";
+    color: var(--green);
+    font-weight:700;
+  }
+
+  /* Job ticket card - signature element */
+  .ticket{
+    background: var(--navy);
+    color: var(--paper);
+    border-radius: 4px;
+    padding: 34px 30px 30px;
+    position:relative;
+    transform: rotate(1.2deg);
+    box-shadow: 0 18px 40px rgba(22,35,58,0.28);
+    border: 1px solid var(--navy-light);
+  }
+  .ticket::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:66px;
+    border-left: 1px dashed rgba(236,238,235,0.25);
+  }
+  .ticket-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed rgba(236,238,235,0.25);
+  }
+  .ticket-head .mono{
+    font-size: 0.72rem;
+    color: var(--paper-dim);
+    letter-spacing: 0.06em;
+  }
+  .stamp{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight:600;
+    letter-spacing: 0.08em;
+    color: var(--brass-light);
+    border: 2px solid var(--brass-light);
+    padding: 6px 10px;
+    border-radius: 3px;
+    transform: rotate(-6deg);
+    display:inline-block;
+  }
+  .ticket-row{
+    display:flex;
+    justify-content:space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(236,238,235,0.12);
+    font-size: 0.9rem;
+  }
+  .ticket-row:last-child{ border-bottom:none; }
+  .ticket-row .label{ color: var(--paper-dim); }
+  .ticket-row .val{ font-weight:600; text-align:right; }
+
+  /* ---------- SERVICES ---------- */
+  section{ padding: 84px 0; }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 52px;
+  }
+  .section-head h2{
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin-top: 14px;
+  }
+  .services-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service-card{
+    background: var(--paper);
+    padding: 30px 26px;
+  }
+  .service-card .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--brass);
+    font-weight:600;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+    display:block;
+  }
+  .service-card h3{
+    font-size: 1.08rem;
+    margin-bottom: 8px;
+  }
+  .service-card p{
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin:0;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats-band{
+    background: var(--navy);
+    color: var(--paper);
+    padding: 52px 0;
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat{
+    text-align:center;
+    padding: 0 20px;
+    border-right: 1px solid var(--navy-light);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 2.3rem;
+    font-weight:700;
+    color: var(--brass-light);
+  }
+  .stat .label{
+    font-size: 0.82rem;
+    color: var(--paper-dim);
+    margin-top: 6px;
+  }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial{
+    max-width: 720px;
+    margin: 0 auto;
+    text-align:center;
+  }
+  .testimonial .quote-mark{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 3.5rem;
+    color: var(--brass);
+    line-height:1;
+    margin-bottom: 6px;
+  }
+  .testimonial blockquote{
+    font-size: 1.25rem;
+    margin: 0 0 20px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 500;
+    line-height:1.4;
+  }
+  .testimonial cite{
+    font-style:normal;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- COVERAGE ---------- */
+  .coverage{
+    background: var(--paper-dim);
+  }
+  .coverage-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 7px 14px;
+    border-radius: 3px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background: var(--navy);
+    color: var(--paper);
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items:start;
+  }
+  .contact h2{
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 16px;
+  }
+  .contact p.lead{
+    color: var(--paper-dim);
+    max-width: 40ch;
+    margin-bottom: 28px;
+  }
+  .contact-detail{
+    font-size: 0.95rem;
+    color: var(--paper-dim);
+    margin-bottom: 10px;
+  }
+  .contact-detail strong{ color: var(--paper); }
+  form{
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+  }
+  input, textarea{
+    background: var(--navy-light);
+    border: 1px solid rgba(236,238,235,0.2);
+    color: var(--paper);
+    padding: 13px 14px;
+    border-radius: var(--radius);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+  }
+  input::placeholder, textarea::placeholder{ color: var(--paper-dim); }
+  textarea{ resize: vertical; min-height: 90px; }
+  .submit-btn{
+    background: var(--brass);
+    color: var(--navy);
+    border:none;
+    padding: 14px;
+    border-radius: var(--radius);
+    font-weight:700;
+    font-size: 0.95rem;
+    cursor:pointer;
+  }
+  .submit-btn:hover{ background: var(--brass-light); }
+  .form-note{
+    font-size: 0.82rem;
+    color: var(--paper-dim);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 36px 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:inline-block; }
+    .hero{ grid-template-columns: 1fr; padding: 56px 0 64px; gap: 44px;}
+    .ticket{ transform: none; }
+    .services-grid{ grid-template-columns: 1fr; }
+    .stats-grid{ grid-template-columns: 1fr; gap: 24px; }
+    .stat{ border-right:none; border-bottom: 1px solid var(--navy-light); padding-bottom: 20px; }
+    .stat:last-child{ border-bottom:none; padding-bottom:0; }
+    .contact-grid{ grid-template-columns: 1fr; gap: 36px; }
+    .wrap{ padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Hartley <span style="color:var(--brass-light)">&amp;</span> Sons <span class="mark">PLUMBING</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#coverage">Coverage</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a class="call-btn" href="tel:01462435129">Call 01462 435 129</a>
+      <button class="menu-toggle" aria-label="Menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap" style="display:contents;">
+    <div>
+      <div class="eyebrow">Hertfordshire · Est. 2009</div>
+      <h1>Plumbing done right, <span>the first time.</span></h1>
+      <p class="lead">Local, Gas Safe registered plumbers covering Hertfordshire and North London. No callout games, no upselling — just the job, fixed properly.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Get a free quote</a>
+        <a class="btn-outline" href="tel:01462435129">Call now</a>
+      </div>
+      <div class="trust-row">
+        <span>Gas Safe registered</span>
+        <span>Fully insured</span>
+        <span>24hr emergency callout</span>
+      </div>
+    </div>
+
+    <div class="ticket">
+      <div class="ticket-head">
+        <div class="mono">SERVICE TICKET<br>No. 2026–0417</div>
+        <div class="stamp">24HR CALLOUT</div>
+      </div>
+      <div class="ticket-row"><span class="label">Response time</span><span class="val">Within 2 hrs</span></div>
+      <div class="ticket-row"><span class="label">Coverage area</span><span class="val">Herts &amp; N. London</span></div>
+      <div class="ticket-row"><span class="label">Average rating</span><span class="val">4.9 ★ (127 reviews)</span></div>
+      <div class="ticket-row"><span class="label">Callout fee</span><span class="val">Waived on repair</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What we fix</div>
+      <h2>From a dripping tap to a full bathroom refit</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="tag mono">EMG · 01</span>
+        <h3>Emergency callouts</h3>
+        <p>Burst pipes, leaks, no hot water. Same-day response, 24 hours a day.</p>
+      </div>
+      <div class="service-card">
+        <span class="tag mono">BLR · 02</span>
+        <h3>Boiler repair &amp; service</h3>
+        <p>Annual servicing, breakdowns, and Gas Safe boiler installations.</p>
+      </div>
+      <div class="service-card">
+        <span class="tag mono">DRN · 03</span>
+        <h3>Blocked drains</h3>
+        <p>CCTV drain surveys and clearance for homes and small businesses.</p>
+      </div>
+      <div class="service-card">
+        <span class="tag mono">BTH · 04</span>
+        <h3>Bathroom fitting</h3>
+        <p>Full refits or single-fixture swaps, tidy work and clear pricing.</p>
+      </div>
+      <div class="service-card">
+        <span class="tag mono">TAP · 05</span>
+        <h3>Taps &amp; fixtures</h3>
+        <p>Dripping taps, low pressure, and fixture replacements.</p>
+      </div>
+      <div class="service-card">
+        <span class="tag mono">GEN · 06</span>
+        <h3>General plumbing</h3>
+        <p>Anything that leaks, drips, or won't switch off. Ask us first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="wrap stats-grid">
+    <div class="stat">
+      <div class="num">15+</div>
+      <div class="label">Years trading in Hertfordshire</div>
+    </div>
+    <div class="stat">
+      <div class="num">4.9★</div>
+      <div class="label">Average customer rating</div>
+    </div>
+    <div class="stat">
+      <div class="num">2hr</div>
+      <div class="label">Average emergency response</div>
+    </div>
+  </div>
+</div>
+
+<section id="reviews">
+  <div class="wrap testimonial">
+    <div class="quote-mark">"</div>
+    <blockquote>Came out within the hour on a Sunday for a burst pipe. Fixed it properly and didn't try to sell me anything I didn't need.</blockquote>
+    <cite>— Sarah M., Letchworth</cite>
+  </div>
+</section>
+
+<section id="coverage" class="coverage">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:0;">
+      <div class="eyebrow">Coverage area</div>
+      <h2>Serving homes across Hertfordshire</h2>
+    </div>
+    <div class="coverage-chips">
+      <span class="chip">Letchworth</span>
+      <span class="chip">Hitchin</span>
+      <span class="chip">Stevenage</span>
+      <span class="chip">Baldock</span>
+      <span class="chip">Welwyn Garden City</span>
+      <span class="chip">North London</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="eyebrow" style="color:var(--paper-dim);">Get in touch</div>
+      <h2>Got a leak? Let's sort it.</h2>
+      <p class="lead">Message us or call directly — most jobs get an answer same day.</p>
+      <div class="contact-detail"><strong>Phone:</strong> 01462 435 129</div>
+      <div class="contact-detail"><strong>Email:</strong> jobs@hartleyandsonsplumbing.co.uk</div>
+      <div class="contact-detail"><strong>Hours:</strong> 24/7 for emergencies · 8am–6pm bookings</div>
+    </div>
+    <form id="quoteForm">
+      <input type="text" placeholder="Your name" required>
+      <input type="tel" placeholder="Phone number" required>
+      <textarea placeholder="What's the problem?"></textarea>
+      <button class="submit-btn" type="submit">Request a callback</button>
+      <div class="form-note" id="formNote">We'll get back to you within 2 hours during working hours.</div>
+    </form>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>Hartley &amp; Sons Plumbing © <span id="year"></span></div>
+  <div>Gas Safe Reg. 000000 · Fully insured · Hertfordshire, UK</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('quoteForm');
+  const note = document.getElementById('formNote');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    note.textContent = "Thanks — that's a demo form, but this is exactly where a real request would land.";
+  });
+
+  const toggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  toggle.addEventListener('click', function(){
+    const showing = navLinks.style.display === 'flex';
+    navLinks.style.display = showing ? 'none' : 'flex';
+    navLinks.style.cssText += showing ? '' : 'position:absolute; top:64px; left:0; right:0; background:var(--navy); flex-direction:column; padding:20px 32px; gap:16px;';
+  });
+</script>
+
+</body>
+</html>
